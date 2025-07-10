@@ -1,5 +1,6 @@
-from sqlmodel import SQLModel, Field, Relationship
+from app.models.enums_model import Examples
 from app.models.customer_model import Customer
+from sqlmodel import SQLModel, Field, Relationship
 
 
 class TransactionModel(SQLModel):
@@ -9,12 +10,20 @@ class TransactionModel(SQLModel):
 
 class TransactionCreate(TransactionModel):
     id_customer: int = Field(foreign_key="customer.id_customer")
-    pass
+    model_config = {
+        "json_schema_extra": {
+            "examples": [Examples.TRANSACTION.value]
+        }
+    }
 
 
 class TransactionUpdate(TransactionModel):
     id_customer: int = Field(foreign_key="customer.id_customer")
-    pass
+    model_config = {
+        "json_schema_extra": {
+            "examples": [Examples.TRANSACTION.value]
+        }
+    }
 
 
 class Transaction(TransactionModel, table=True):
