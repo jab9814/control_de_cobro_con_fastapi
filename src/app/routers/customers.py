@@ -1,10 +1,10 @@
 from sqlmodel import select
-from fastapi import APIRouter, status, HTTPException
 from db_sqlite import SessionDep
+from fastapi import APIRouter, status, HTTPException
 from app.models.customer_model import (
+    Customer,
     CustomerCreate,
     CustomerUpdate, 
-    Customer
 ) 
 
 
@@ -25,9 +25,9 @@ async def create_customer(customer_info: CustomerCreate, session: SessionDep):
     return new_customer
 
 
-@router.get("/read_customer/{customer_id}", response_model=Customer)
-async def read_customer(customer_id: int, session: SessionDep):
-    customer_db = session.get(Customer, customer_id)
+@router.get("/read_customer/{id_customer}", response_model=Customer)
+async def read_customer(id_customer: int, session: SessionDep):
+    customer_db: Customer = session.get(Customer, id_customer)
     if not customer_db:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -36,9 +36,9 @@ async def read_customer(customer_id: int, session: SessionDep):
     return customer_db
 
 
-@router.delete("/delete_customer/{customer_id}")
-async def delete_customer(customer_id: int, session: SessionDep):
-    customer_db = session.get(Customer, customer_id)
+@router.delete("/delete_customer/{id_customer}")
+async def delete_customer(id_customer: int, session: SessionDep):
+    customer_db: Customer = session.get(Customer, id_customer)
     if not customer_db:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -47,14 +47,14 @@ async def delete_customer(customer_id: int, session: SessionDep):
     session.delete(customer_db)
     session.commit()
     return {
-        'customer_id': customer_id,
+        'id_customer': id_customer,
         'detail': 'ok',
     }
 
 
-@router.patch("/update_customer/{customer_id}", response_model=Customer, status_code=status.HTTP_201_CREATED)
-async def update_customer(customer_id: int, customer_info: CustomerUpdate, session: SessionDep):
-    customer_db = session.get(Customer, customer_id)
+@router.patch("/update_customer/{id_customer}", response_model=Customer, status_code=status.HTTP_201_CREATED)
+async def update_customer(id_customer: int, customer_info: CustomerUpdate, session: SessionDep):
+    customer_db: Customer = session.get(Customer, id_customer)
     if not customer_db:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

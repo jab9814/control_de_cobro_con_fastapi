@@ -31,10 +31,10 @@ Permite registrar usuarios, sus transacciones y facturas mediante una API desarr
     pip install -r requirements.txt
 
 ## ▶️ Uso
-Navegá a la carpeta app y ejecuta:
+Navegá a la carpeta src y ejecuta:
    ```bash
-   cd src/app
-   fastapi dev main.py
+   cd src
+   fastapi dev app/main.py 
 
 Al iniciar el sistema, se crea una carpeta data/ en la raíz del proyecto (src/) donde se almacena la base de datos SQLite (.sqlite3).
 Accedé a la documentación interactiva de la API en:

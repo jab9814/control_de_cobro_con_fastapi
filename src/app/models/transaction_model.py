@@ -1,6 +1,5 @@
 from sqlmodel import SQLModel, Field, Relationship
 from app.models.customer_model import Customer
-from pydantic import BaseModel
 
 
 class TransactionModel(SQLModel):
