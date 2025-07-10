@@ -1,9 +1,14 @@
+from os import path
+from pathlib import Path
 from fastapi import Depends, FastAPI
 from typing import Annotated
 from sqlmodel import SQLModel, Session, create_engine
 
 
-sqlite_name = '../data/db_project.sqlite3'
+path_db = "../data/"
+Path(path_db).mkdir(parents=True, exist_ok=True)
+db_name = 'db_project.sqlite3'
+sqlite_name = path.join(path_db, db_name)
 sqlite_url = f'sqlite:///{sqlite_name}'
 engine = create_engine(url=sqlite_url)
 
