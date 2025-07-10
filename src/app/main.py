@@ -1,14 +1,20 @@
 import time
-from fastapi import FastAPI, Response
+from typing import Annotated
 from db_sqlite import create_all_tables
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from app.routers import customers, invoices, transactions, plans
+from fastapi import FastAPI, Response, Depends, HTTPException, status
 
 
 app = FastAPI(lifespan=create_all_tables)
 
+security = HTTPBasic()
+
 @app.get("/")
-async def root():
-    return {"message": "root"}
+async def root(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
+    if credentials.username == 'username' and credentials.password == 'password':
+        return {"message": "Autorizado"}
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
 
 app.include_router(customers.router)
 app.include_router(invoices.router)
