@@ -1,5 +1,6 @@
-from sqlmodel import SQLModel, Field, Relationship
+from app.models.enums_model import Examples
 from app.models.customer_model import CustomerPlan
+from sqlmodel import SQLModel, Field, Relationship
 
 
 class PlanModel(SQLModel):
@@ -8,10 +9,19 @@ class PlanModel(SQLModel):
     description: str = Field(default=None)
 
 class PlanCreate(PlanModel):
-    pass
+    model_config = {
+        "json_schema_extra": {
+            "examples": [Examples.PLAN.value]
+        }
+    }
 
 class PlanUpdate(PlanModel):
-    pass
+    model_config = {
+        "json_schema_extra": {
+            "examples": [Examples.PLAN.value]
+        }
+    }
+
 
 class Plan(PlanModel, table=True):
     id_plan: int | None = Field(default=None, primary_key=True)
