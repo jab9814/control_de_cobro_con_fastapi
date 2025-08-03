@@ -10,12 +10,10 @@
 - [Tablas principales y Enums](#tablas-principales-y-enums)
 - [Código sql](#código-sql)
 
-
 ## Esquema de la Base de Datos
 
 📊 Puedes ver el diagrama interactivo aquí:  
 👉 [Ver en dbdiagram.io](https://dbdiagram.io/e/688f7d1ecca18e685c040d1f/688f9a8ecca18e685c062b89)
-
 
 ## Esquema visual
 

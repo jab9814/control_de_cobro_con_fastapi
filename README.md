@@ -81,7 +81,7 @@ Pero esto es adaptable para los demás endpoints, como también el cambio de usu
 
 Al iniciar el sistema, dentro de la carpeta [data](data/), se crea automáticamente la base de datos SQLite por nombre [db_project.sqlite3](data/db_project.sqlite3).
 
-En la siguiente ruta [diagramas db](/diagrams_db/README_DB.md), se observa la estructura de las tablas utilizadas en los modelos del proyecto.
+En la siguiente ruta [diagramas db](/diagrams_db/README.md), se observa la estructura de las tablas utilizadas en los modelos del proyecto.
 
 ## Estructura del Proyecto
 
@@ -111,7 +111,7 @@ control_de_cobro_con_fastapi
 │   ├── __init__.py
 │   ├── control de cobro con fastapi.pgn
 │   ├── tables_models.sql
-│   └── README_DB.md
+│   └── README.md
 ├── env/
 ├── .git/
 ├── .gitignore
