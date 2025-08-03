@@ -13,6 +13,9 @@ router = APIRouter(tags=['customers'])
 
 @router.get("/list_customer", response_model=list[Customer])
 async def list_customer(session: SessionDep):
+    """
+    Listar los Customers que se encuentran registrados en la db
+    """
     return session.exec(select(Customer)).all()
 
 
